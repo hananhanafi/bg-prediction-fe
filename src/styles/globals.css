@@ -40,7 +40,7 @@
   --card-border-rgb: 131, 134, 135;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -71,12 +71,13 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
-}
+} */
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 html,
@@ -87,12 +88,12 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 a {
@@ -100,8 +101,27 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+} */
+
+.centered {
+  position: absolute;
+  width: 100%; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Tablet and Smaller Desktop */
+@media (max-width: 1120px) {
+  .bg-home {
+    display: none;
+  }
+}
+
+.text-main { 
+  color: #ff7875 !important;
 }

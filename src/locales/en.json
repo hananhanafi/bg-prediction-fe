@@ -1,0 +1,22 @@
+{
+    "Home": {
+        "hello": "Welcome to",
+        "bgtitle": "Blood Glucos Prediction System",
+        "getprediction": "Get Prediction",
+        "about": "About"
+    },
+    "Footer": {
+        "madeWith": "Made With",
+        "by": "By"
+    },
+    "Login": {
+        "login": "Login",
+        "register": "Daftar",
+        "password": "Password",
+        "username": "Username",
+        "submit": "Submit"
+    },
+    "About": {
+        "about": "About"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "Home": {
+        "hello": "Selamat Datang di",
+        "bgtitle": "Sistem Prediksi Gula Darah",
+        "getprediction": "Dapatkan Prediksi",
+        "about": "Tentang"
+    },
+    "Footer": {
+        "madeWith": "Dibuat Dengan",
+        "by": "Oleh"
+    },
+    "Login": {
+        "login": "Masuk",
+        "register": "Daftar",
+        "password": "Kata Sandi",
+        "username": "Nama Pengguna",
+        "submit": "Kirim"
+    },
+    "About": {
+        "about": "Tentang"
+    }
+}
