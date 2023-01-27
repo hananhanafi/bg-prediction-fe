@@ -14,7 +14,8 @@
         "register": "Daftar",
         "password": "Kata Sandi",
         "username": "Nama Pengguna",
-        "submit": "Kirim"
+        "submit": "Kirim",
+        "continueWith": "Lanjutkan Dengan"
     },
     "About": {
         "about": "Tentang"

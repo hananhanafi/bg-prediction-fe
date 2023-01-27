@@ -1,6 +1,9 @@
 import Container from '@/components/layouts/Container';
-import { Row, Col, Card, Button, Checkbox, Form, Input } from 'antd';
+import { Row, Col, Card, Button, Checkbox, Form, Input, Divider } from 'antd';
 import { useTranslations } from 'next-intl';
+import React, { useState, useEffect } from 'react'
+import { getCsrfToken, getProviders, useSession, signIn } from "next-auth/react"
+import { useRouter } from "next/router";
 
 // const inter = Inter({ subsets: ['latin'] })
 const onFinish = (values) => {
@@ -20,6 +23,34 @@ const rowStyle = {
 };
 export default function Home() {
     const t = useTranslations('Login');
+    const router = useRouter()
+    const { data: session, status: status } = useSession()
+    const [providers, setProviders] = useState(null);
+    const [csrfToken, setCsrfToken] = useState(null);
+    
+    useEffect(() => {
+        if (session && status !== 'loading') { 
+            router.push('/admin') 
+        }
+        // declare the data fetching function
+        const fetchData = async () => {
+            if (status !== 'loading') {
+              if (await providers === null) {
+                setProviders(await getProviders());
+                if (await csrfToken === null) {
+                  setCsrfToken(await getCsrfToken());
+                }
+              }
+            }
+        }
+        // call the function
+        fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+        // console.log("pr",providers)
+    }, [session,status,providers,csrfToken])
+
+
     return (
     <>
         <Container title="Login" >
@@ -81,7 +112,7 @@ export default function Home() {
                                     }}
                                     style={{textAlign:'right'}}
                                 >
-                                    <Button type="text" dark className='me-2'>
+                                    <Button type="text" className='me-2'>
                                         {t('register')}
                                     </Button>
                                     <Button type="primary" htmlType="submit" danger className='me-2'>
@@ -89,6 +120,22 @@ export default function Home() {
                                     </Button>
                                 </Form.Item>
                             </Form>
+                            <Row justify="center" align="middle" className="text-center"> 
+                                <Col span={24}>
+                                    <Divider>OR</Divider>
+                                </Col>
+                                <Col span={24}>
+                                    {providers && Object.values(providers).map((provider) => {
+                                        return (
+                                        <div key={provider.name}>
+                                            <Button size='large' onClick={() => signIn(provider.id)} className='w-100 mb-2'>
+                                                {t('continueWith')} {provider.name} <img src={'/'+provider.id+'-icon.svg'} width="20px" className='ms-2'></img>
+                                            </Button>
+                                        </div>
+                                        );
+                                    })}
+                                </Col>
+                            </Row>   
                         </Card>
                     </div>
                 </Col>

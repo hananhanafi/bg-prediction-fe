@@ -1,19 +1,8 @@
 import React from 'react';
-// import { fadeIn } from '~/utilities/animation';
-import { motion } from 'framer-motion';
 import Head from 'next/head';
-import HeaderDefault from '@/components/shared/headers/HeaderDefault';
-import FooterDefault from '@/components/shared/footers/FooterDefault';
-import { Layout, Space, theme } from 'antd';
-const { Content } = Layout;
-const contentStyle = {
-    // textAlign: 'center',
-    // minHeight: 120,
-    // lineHeight: '120px',
-    // color: '#fff',
-    // backgroundColor: '#108ee9',
-    height: '100%',
-  };
+import HeaderDefault from '../shared/headers/HeaderDefault';
+import FooterDefault from '../shared/footers/FooterDefault';
+import { Layout } from 'antd';
 
 const Container = ({ children, title, header = <HeaderDefault />, footer = <FooterDefault /> }) => {
     let titleView;
@@ -32,9 +21,9 @@ const Container = ({ children, title, header = <HeaderDefault />, footer = <Foot
                 <link rel="icon" href="/bg-prediction-logo.svg" />
             </Head>
                 {header}
-                <Content style={contentStyle}>
+                <Layout style={{height: '100%'}}>
                     {children}
-                </Content>
+                </Layout>
                 {footer}
         </Layout>
     );

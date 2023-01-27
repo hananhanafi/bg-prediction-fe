@@ -3,7 +3,7 @@
 // import { Inter } from '@next/font/google'
 // const inter = Inter({ subsets: ['latin'] })
 // import styles from '@/styles/Home.module.css'
-import { Row, Col, Button, Image } from 'antd';
+import { Row, Col, Button } from 'antd';
 import Container from '@/components/layouts/Container';
 import { useTranslations } from 'next-intl';
 import { useRouter } from "next/router";
@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <>
-      <Container title="Login" >
+      <Container title="Home" >
             {/* <img src='/bg-home.png' style={{position:'absolute',top:'0',right:'0',bottom:'0',height:'100%'}} className='bg-home'/> */}
             <img src='/bg-home-bottom.png' style={{position:'absolute',left:'0',right:'0',bottom:'0',width:'100%',height:'40vh'}} />
             <Row justify="center" align="middle" className="centered">
@@ -28,7 +28,7 @@ export default function Home() {
                 </Col>
                 <Col span={24}>
                     <div className='text-center'>
-                        <Link href='/login' locale={locale}>
+                        <Link href='/admin' locale={locale}>
                           <Button type="primary" danger shape='round'>
                             {t('getprediction')}
                           </Button>

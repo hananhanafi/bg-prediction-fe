@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NextIntlProvider} from 'next-intl';
 import { useRouter } from "next/router";
+import { SessionProvider } from "next-auth/react"
 
 import en from "../locales/en.json";
 import id from "../locales/id.json";
@@ -10,18 +11,16 @@ const messages = {
   id,
 };
 
-
-export default function App({ Component, pageProps }) {
+export default function App({ 
+  Component, 
+  pageProps: { session, ...pageProps } 
+}) {
   const { locale } = useRouter();
   return (
-    <NextIntlProvider locale={locale} messages={messages[locale]}>
-      <Component {...pageProps} />
-    </NextIntlProvider>
+    <SessionProvider session={session}>
+      <NextIntlProvider locale={locale} messages={messages[locale]}>
+        <Component {...pageProps} />
+      </NextIntlProvider>
+    </SessionProvider>
   );
-  // return <Component {...pageProps} />
-  // return (
-  //   <NextIntlProvider messages={pageProps.messages}>
-  //     <Component {...pageProps} />
-  //   </NextIntlProvider>
-  // );
 }
