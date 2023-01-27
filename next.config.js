@@ -11,7 +11,8 @@ const nextConfig = {
       // TWITTER_SECRET: 'Skv3AGh2luwNreYtiRJCpZ9pZ9UA4kQO6gKV9ZRYuR1oG3PxWZ',
       AUTH0_ID: 'W3lILv4uSTC3l52YXHdH0QbCplY9as1Q',
       AUTH0_SECRET: 'aQ8jzJXqDyyQQDdkhM2S_Qe1YC9sWoSdICv6EyG7SWSu4PjOzAs3w2Q7vb2W-Gl4',
-      AUTH0_ISSUER: 'dev-pea57wz8xxzi0gts.us.auth0.com'
+      AUTH0_ISSUER: 'dev-pea57wz8xxzi0gts.us.auth0.com',
+      NEXTAUTH_SECRET: '376763'
 
   },
   reactStrictMode: true,

@@ -51,6 +51,7 @@ export const options = {
     //   issuer: process.env.AUTH0_ISSUER,
     // }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   theme: {
     colorScheme: "light",
   },
