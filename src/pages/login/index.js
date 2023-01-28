@@ -1,18 +1,18 @@
 import Container from '@/components/layouts/Container';
-import { Row, Col, Card, Button, Checkbox, Form, Input, Divider } from 'antd';
+import { Row, Col, Card, Button, Form, Input, Divider } from 'antd';
 import { useTranslations } from 'next-intl';
 import React, { useState, useEffect } from 'react'
 import { getCsrfToken, getProviders, useSession, signIn } from "next-auth/react"
 import { useRouter } from "next/router";
+import Image from 'next/image'
 
 // const inter = Inter({ subsets: ['latin'] })
-const onFinish = (values) => {
-    console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
-
+// const onFinish = (values) => {
+//     console.log('Success:', values);
+// };
+// const onFinishFailed = (errorInfo) => {
+//     console.log('Failed:', errorInfo);
+// };
 
 const rowStyle = { 
     position: 'absolute', 
@@ -52,95 +52,93 @@ export default function Home() {
 
 
     return (
-    <>
-        <Container title="Login" >
-            <Row justify="center" align="middle" style={rowStyle}>
-                <Col xs={22} sm={16} md={14} lg={12} xl={8} >
-                    <div className="site-card-border-less-wrapper">
-                        <Card
-                            title={t('login')}
-                            bordered={false}
-                            className="bg-danger"
-                            headStyle={{color: '#fff'}}
-                            bodyStyle={{background:'#fff'}}
+    <Container title="Login" >
+        <Row justify="center" align="middle" style={rowStyle}>
+            <Col xs={22} sm={16} md={14} lg={12} xl={8} >
+                <div className="site-card-border-less-wrapper">
+                    <Card
+                        title={t('login')}
+                        bordered={false}
+                        className="bg-danger"
+                        headStyle={{color: '#fff'}}
+                        bodyStyle={{background:'#fff'}}
+                    >
+                        {/* <Form
+                            name="basic"
+                            labelCol={{
+                                span: 8,
+                            }}
+                            labelAlign="left"
+                            wrapperCol={{
+                                span: 16,
+                            }}
+                            initialValues={{
+                            remember: true,
+                            }}
+                            onFinish={onFinish}
+                            onFinishFailed={onFinishFailed}
+                            autoComplete="off"
                         >
-                            <Form
-                                name="basic"
-                                labelCol={{
-                                    span: 6,
-                                }}
-                                // labelAlign="right"
-                                wrapperCol={{
-                                    span: 18,
-                                }}
-                                initialValues={{
-                                remember: true,
-                                }}
-                                onFinish={onFinish}
-                                onFinishFailed={onFinishFailed}
-                                autoComplete="off"
+                            <Form.Item
+                                label={t('username')}
+                                name="username"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: t('pleaseInputYour',{name:t('username')}),
+                                    },
+                                ]}
                             >
-                                <Form.Item
-                                    label={t('username')}
-                                    name="username"
-                                    rules={[
-                                        {
-                                        required: true,
-                                        message: 'Please input your username!',
-                                        },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
+                                <Input />
+                            </Form.Item>
 
-                                <Form.Item
-                                    label={t('password')}
-                                    name="password"
-                                    rules={[
-                                        {
+                            <Form.Item
+                                label={t('password')}
+                                name="password"
+                                rules={[
+                                    {
                                         required: true,
-                                        message: 'Please input your password!',
-                                        },
-                                    ]}
-                                >
-                                    <Input.Password />
-                                </Form.Item>
+                                        message: t('pleaseInputYour',{name:t('password')}),
+                                    },
+                                ]}
+                            >
+                                <Input.Password />
+                            </Form.Item>
 
-                                <Form.Item
-                                    wrapperCol={{
-                                        span: 24,
-                                    }}
-                                    style={{textAlign:'right'}}
-                                >
-                                    <Button type="text" className='me-2'>
-                                        {t('register')}
-                                    </Button>
-                                    <Button type="primary" htmlType="submit" danger className='me-2'>
-                                        {t('submit')}
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-                            <Row justify="center" align="middle" className="text-center"> 
-                                <Col span={24}>
-                                    <Divider>OR</Divider>
-                                </Col>
-                                <Col span={24}>
-                                    {providers && Object.values(providers).map((provider) => {
-                                        return (
-                                        <div key={provider.name}>
-                                            <Button size='large' onClick={() => signIn(provider.id)} className='w-100 mb-2'>
-                                                {t('continueWith')} {provider.name} <img src={'/'+provider.id+'-icon.svg'} width="20px" className='ms-2'></img>
-                                            </Button>
-                                        </div>
-                                        );
-                                    })}
-                                </Col>
-                            </Row>   
-                        </Card>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-    </>
+                            <Form.Item
+                                wrapperCol={{
+                                    span: 24,
+                                }}
+                                style={{textAlign:'right'}}
+                            >
+                                <Button type="text" className='me-2'>
+                                    {t('register')}
+                                </Button>
+                                <Button type="primary" htmlType="submit" danger className='me-2'>
+                                    {t('submit')}
+                                </Button>
+                            </Form.Item>
+                        </Form> */}
+                        <Row justify="center" align="middle" className="text-center"> 
+                            {/* <Col span={24}>
+                                <Divider>{t('or')}</Divider>
+                            </Col> */}
+                            <Col span={24}>
+                                {providers && Object.values(providers).map((provider) => {
+                                    return (
+                                    <div key={provider.name}>
+                                        <Button size='large' onClick={() => signIn(provider.id)} className='w-100 mb-2'>
+                                            {t('continueWith')} {provider.name} <Image src={('/'+provider.id+'-icon.png')} width={20} height={20} className='ms-2' alt={provider.name}></Image>
+                                        </Button>
+                                    </div>
+                                    );
+                                })}
+                            </Col>
+                        </Row>   
+                    </Card>
+                </div>
+            </Col>
+        </Row>
+    </Container>
   )
 }

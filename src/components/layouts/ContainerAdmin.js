@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import HeaderAdmin from '@/components/shared/headers/HeaderAdmin';
 import FooterDefault from '@/components/shared/footers/FooterDefault';
-import { Layout, Space, theme } from 'antd';
+import { Layout, Spin } from 'antd';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
@@ -30,6 +30,8 @@ const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <F
         }
     }, [session,status])
 
+    if(status === 'loading') return <Spin />;
+    
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Head>

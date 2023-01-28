@@ -5,9 +5,17 @@
         "getprediction": "Dapatkan Prediksi",
         "about": "Tentang"
     },
+    "Header": {
+        "home": "Beranda",
+        "datasource": "Sumber Data",
+        "visualization": "Visualisasi",
+        "getprediction": "Dapatkan Prediksi",
+        "logout": "Keluar"
+    },
     "Footer": {
         "madeWith": "Dibuat Dengan",
-        "by": "Oleh"
+        "by": "Oleh",
+        "language": "Bahasa"
     },
     "Login": {
         "login": "Masuk",
@@ -15,9 +23,13 @@
         "password": "Kata Sandi",
         "username": "Nama Pengguna",
         "submit": "Kirim",
-        "continueWith": "Lanjutkan Dengan"
+        "continueWith": "Lanjutkan Dengan",
+        "or": "Atau",
+        "pleaseInputYour": "Mohon masukkan {name}!"
     },
     "About": {
-        "about": "Tentang"
+        "about": "Tentang",
+        "back": "Kembali",
+        "aboutDesc": "Sistem ini dikembangkan dengan menggunakan kecerdasan buatan."
     }
 }

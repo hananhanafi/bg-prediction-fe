@@ -5,19 +5,31 @@
         "getprediction": "Get Prediction",
         "about": "About"
     },
+    "Header": {
+        "home": "Home",
+        "datasource": "Data source",
+        "visualization": "Visualisation",
+        "getprediction": "Get Prediction",
+        "logout": "Logout"
+    },
     "Footer": {
         "madeWith": "Made With",
-        "by": "By"
+        "by": "By",
+        "language": "Language"
     },
     "Login": {
         "login": "Login",
-        "register": "Daftar",
+        "register": "Register",
         "password": "Password",
         "username": "Username",
         "submit": "Submit",
-        "continueWith": "Continue With"
+        "continueWith": "Continue With",
+        "or": "OR",
+        "pleaseInputYour": "Please input your {name}!"
     },
     "About": {
-        "about": "About"
+        "about": "About",
+        "back": "Back",
+        "aboutDesc": "This system was developed by employing Artificial Intelligence."
     }
 }

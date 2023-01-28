@@ -1,67 +1,93 @@
 import React from 'react';
-import { Layout, Image, Row, Col, Dropdown, Typography, Space } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Layout, Image, Row, Col, Avatar, Button, Dropdown, Space } from 'antd';
+import { UserOutlined, DownOutlined, SmileOutlined  } from '@ant-design/icons';
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useTranslations } from 'next-intl';
+import { useState, useEffect } from "react";
+
 const { Header } = Layout;
 
+
 const headerStyle = {
-  height: 64,
-  paddingInline: 50,
-  lineHeight: '64px',
-  zIndex: '1'
+  zIndex: '1',
+  height: '50px',
+  lineHeight: '50px'
 };
 const HeaderAdmin = ({ children }) => {
+  const t = useTranslations('Header');
   const { locales, locale, pathname, query, asPath } = useRouter();
-  const items = locales.map(loc=>{
-    return {
-      key: loc,
-      // label: loc
-      label: (
-        <Link
-          key={loc}
-          href={{ pathname, query }}
-          as={asPath}
-          locale={loc}
-        >
-          <img src={'/flags/'+loc+'.png'} width="20px" className='me-2'></img>{loc}
-         </Link>
-      )
+  const router = useRouter()
+  const { data: session, status: status } = useSession();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (session && status !== 'loading') { 
+      setUser(session.user)
     }
-  })
+  }, [session,status])
+
+  const items = [
+    {
+      key: '1',
+      danger: true,
+      label: (
+        <Link 
+          href='/api/auth/signout' 
+          onClick={(e) => {
+            e.preventDefault()
+            signOut()
+          }} locale={locale} 
+          style={{textDecoration:'none'}}
+        >
+          {t('logout')}
+        </Link>
+      ),
+    },
+  ];
+ 
     return (
-      <Header style={headerStyle} className="bg-transparent text-white py-2 px-4">
+      <Header style={headerStyle} className="bg-white">
         <Row justify="end">
-          <Col span="12" className='text-start'>
+          <Col span="20" className='text-start'>
             <Link href='/' locale={locale}>
-              <Image preview={false} src='/bg-prediction-logo.svg' width={'auto'} height={'24px'}/>
+              <Image preview={false} src='/bg-prediction-logo.svg' width={'auto'} height={'24px'} alt='logo'/>
+            </Link>
+            <Link href='/' locale={locale}>
+              <Button type="text" className='ms-2'>
+                {t('home')}
+              </Button>
+            </Link>
+            <Link href='/' locale={locale}>
+              <Button type="text" className='ms-2'>
+                {t('getprediction')}
+              </Button>
+            </Link>
+            <Link href='/' locale={locale}>
+              <Button type="text" className='ms-2'>
+                {t('datasource')}
+              </Button>
+            </Link>
+            <Link href='/' locale={locale}>
+              <Button type="text" className='ms-2'>
+                {t('visualization')}
+              </Button>
             </Link>
           </Col>
-          <Col span="12" className='text-end'>
+          <Col span="4" className='text-end'>
             <Dropdown
               menu={{
                 items,
-                selectable: true,
-                defaultSelectedKeys: [locale],
               }}
             >
-              <Typography.Link>
+              <a onClick={(e) => e.preventDefault()} style={{textDecoration:'none',color:'#000'}}>
                 <Space>
-                  Language
+                <Avatar src={user?.image ?? ''} size={24}/> {user?.name ?? ''}
                   <DownOutlined />
                 </Space>
-              </Typography.Link>
-            </Dropdown>
-            <a
-                href={`/api/auth/signout`}
-                onClick={(e) => {
-                  e.preventDefault()
-                  signOut()
-                }}
-              >
-                Sign out
               </a>
+            </Dropdown>
           </Col>
         </Row>
       </Header>

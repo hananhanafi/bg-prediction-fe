@@ -13,45 +13,14 @@ const headerStyle = {
 };
 const HeaderDefault = ({ children }) => {
   const { locales, locale, pathname, query, asPath } = useRouter();
-  const items = locales.map(loc=>{
-    return {
-      key: loc,
-      // label: loc
-      label: (
-        <Link
-          key={loc}
-          href={{ pathname, query }}
-          as={asPath}
-          locale={loc}
-        >
-          <img src={'/flags/'+loc+'.png'} width="20px" className='me-2'></img>{loc}
-         </Link>
-      )
-    }
-  })
+  
     return (
-      <Header style={headerStyle} className="bg-transparent text-white py-2 px-4">
+      <Header style={headerStyle} className="bg-transparent text-white">
         <Row justify="end">
-          <Col span="12" className='text-start'>
+          <Col span="24" className='text-start'>
             <Link href='/' locale={locale}>
-              <Image preview={false} src='/bg-prediction-logo.svg' width={'40px'}/>
+              <Image preview={false} src='/bg-prediction-logo.svg' width={'40px'} alt='logo'/>
             </Link>
-          </Col>
-          <Col span="12" className='text-end'>
-            <Dropdown
-              menu={{
-                items,
-                selectable: true,
-                defaultSelectedKeys: [locale],
-              }}
-            >
-              <Typography.Link>
-                <Space>
-                  Language
-                  <DownOutlined />
-                </Space>
-              </Typography.Link>
-            </Dropdown>
           </Col>
         </Row>
       </Header>
