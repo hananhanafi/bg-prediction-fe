@@ -1,30 +1,33 @@
-import { Row, Col, Button,  } from 'antd';
 import ContainerAdmin from '@/components/layouts/ContainerAdmin';
 import { useTranslations } from 'next-intl';
-
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
 import { useState, useEffect } from 'react';
 import PatientsRecordsRepository from '@/repositories/PatientRecordsRepository';
 
 
-export default function Admin() {
+export default function Data() {
     
     const [list, setList] = useState([]);
+    const [patientIdlist, setPatientIdList] = useState([]);
     // effects
     useEffect(()=> {
         PatientsRecordsRepository.getList({})
         .then((res)=>{
             const data = res.data
             setList(data?.data ??[])
+            console.log("list",list)
+        });
+        PatientsRecordsRepository.getIdList({})
+        .then((res)=>{
+            const data = res.data
+            setPatientIdList(data?.data ??[])
         });
     }, [])
 
-    const t = useTranslations('Admin');
+  const t = useTranslations('Data');
 
-    return (
-      <ContainerAdmin title="Admin" >
-        Admin Page
-      </ContainerAdmin>
-    )
+  return (
+    <ContainerAdmin title={t('datasource')} breadcrumb={['home','datasource']}>
+      Data Page
+    </ContainerAdmin>
+  )
 }

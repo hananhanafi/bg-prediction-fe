@@ -31,5 +31,17 @@
         "about": "Tentang",
         "back": "Kembali",
         "aboutDesc": "Sistem ini dikembangkan dengan menggunakan kecerdasan buatan."
+    },
+    "Admin": {
+        "admin": "Admin"
+    },
+    "GetPrediction": {
+        "getprediction": "Get Prediction"
+    },
+    "Data": {
+        "datasource": "Sumber Data"
+    },
+    "Visualization": {
+        "visualization": "Visualisasi"
     }
 }

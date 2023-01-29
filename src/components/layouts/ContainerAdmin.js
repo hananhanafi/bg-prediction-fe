@@ -3,17 +3,20 @@ import React from 'react';
 import Head from 'next/head';
 import HeaderAdmin from '@/components/shared/headers/HeaderAdmin';
 import FooterDefault from '@/components/shared/footers/FooterDefault';
-import { Layout, Spin } from 'antd';
+import { Layout, Spin, Breadcrumb, Menu, theme  } from 'antd';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
+import { useTranslations } from 'next-intl';
 
 const { Content } = Layout;
-const contentStyle = {
-    height: '100%',
-  };
 
-const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <FooterDefault /> }) => {
+const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <FooterDefault />, breadcrumb = ['home'] }) => {
+    const t = useTranslations('Header');
+    const {
+      token: { colorBgContainer },
+    } = theme.useToken();
+
     let titleView;
     if (title !== null) {
         titleView = process.env.title + ' | ' + title;
@@ -31,7 +34,7 @@ const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <F
     }, [session,status])
 
     if(status === 'loading') return <Spin />;
-    
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Head>
@@ -41,8 +44,30 @@ const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <F
                 <link rel="icon" href="/bg-prediction-logo.svg" />
             </Head>
                 {header}
-                <Content style={contentStyle}>
+                <Content
+                    className="site-layout"
+                    style={{
+                    padding: '0 50px',
+                    }}
+                >
+                    <Breadcrumb
+                        style={{
+                            margin: '16px 0',
+                        }}
+                    >
+                        {breadcrumb && breadcrumb.map((crumb)=>{
+                            return <Breadcrumb.Item key={crumb}>{t(crumb)}</Breadcrumb.Item>
+                        })}
+                    </Breadcrumb>
+                    <div
+                    style={{
+                        padding: 24,
+                        minHeight: 380,
+                        background: colorBgContainer,
+                    }}
+                    >
                     {children}
+                    </div>
                 </Content>
                 {footer}
         </Layout>

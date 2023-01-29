@@ -21,7 +21,8 @@ const rowStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
 };
-export default function Home() {
+
+export default function Login() {
     const t = useTranslations('Login');
     const router = useRouter()
     const { data: session, status: status } = useSession()

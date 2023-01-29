@@ -8,7 +8,7 @@
     "Header": {
         "home": "Home",
         "datasource": "Data source",
-        "visualization": "Visualisation",
+        "visualization": "Visualization",
         "getprediction": "Get Prediction",
         "logout": "Logout"
     },
@@ -31,5 +31,17 @@
         "about": "About",
         "back": "Back",
         "aboutDesc": "This system was developed by employing Artificial Intelligence."
+    },
+    "Admin": {
+        "admin": "Admin"
+    },
+    "GetPrediction": {
+        "getprediction": "Get Prediction"
+    },
+    "Data": {
+        "datasource": "Data Source"
+    },
+    "Visualization": {
+        "visualization": "Visualization"
     }
 }
