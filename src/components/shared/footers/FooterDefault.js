@@ -13,6 +13,9 @@ import {
 
 const footerStyle = {
   textAlign: 'center',
+  position: 'fixed', 
+  width: '100%',
+  bottom: 0,
   zIndex: 99
 };
 
@@ -48,6 +51,7 @@ const FooterDefault = ({ children }) => {
             defaultSelectedKeys: [locale],
           }}
           className='ms-2'
+          placement="topRight"
         >
           <Typography.Link style={{color:'#fff'}}>
             <Space>

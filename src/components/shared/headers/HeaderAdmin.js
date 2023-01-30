@@ -14,9 +14,9 @@ const headerStyle = {
   zIndex: 1,
   height: '50px',
   lineHeight: '50px',
-  position: 'sticky', 
-  top: 0,  
-  width: '100%'
+  position: 'fixed', 
+  width: '100%',
+  top: 0
 };
 
 const HeaderAdmin = ({ children }) => {

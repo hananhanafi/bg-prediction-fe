@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import HeaderAdmin from '@/components/shared/headers/HeaderAdmin';
 import FooterDefault from '@/components/shared/footers/FooterDefault';
-import { Layout, Spin, Breadcrumb, Menu, theme  } from 'antd';
+import { Layout, Spin, Breadcrumb, Menu, theme, Card  } from 'antd';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
@@ -47,7 +47,7 @@ const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <F
                 <Content
                     className="site-layout"
                     style={{
-                    padding: '0 50px',
+                        padding: '50px 24px',
                     }}
                 >
                     <Breadcrumb
@@ -59,15 +59,12 @@ const ContainerAdmin = ({ children, title, header = <HeaderAdmin />, footer = <F
                             return <Breadcrumb.Item key={crumb}>{t(crumb)}</Breadcrumb.Item>
                         })}
                     </Breadcrumb>
-                    <div
-                    style={{
-                        padding: 24,
-                        minHeight: 380,
-                        background: colorBgContainer,
-                    }}
+                    <Card
+                    bordered={true}
+                    className='shadow'
                     >
-                    {children}
-                    </div>
+                        {children}
+                    </Card>
                 </Content>
                 {footer}
         </Layout>
