@@ -49,6 +49,16 @@
         "historyData": "Riwayat Data"
     },
     "Visualization": {
-        "visualization": "Visualisasi"
+        "visualization": "Visualisasi",
+        "patientid": "ID Pasien",
+        "bloodGlucoseLevel": "Kadar Gula Darah",
+        "amountofData": "Jumlah Data",
+        "historyData": "Riwayat Data",
+        "selectPatientid": "Pilih ID Pasien",
+        "datetime": "Tanggal & Waktu",
+        "upperRedFlagDesc": "Gula darah sangat tinggi dan membutuhkan penaganan segera",
+        "upperYellowFlagDesc": "Gula darah diatas level normal dan ditangani sesuai kebutuhan",
+        "lowerRedFlagDesc": "Gula darah sangat rendah dan membutuhkan penaganan segera",
+        "lowerYellowFlagDesc": "Gula darah dibawah normal dan ditangani sesuai kebutuhan"
     }
 }

@@ -49,6 +49,16 @@
         "historyData": "History Data"
     },
     "Visualization": {
-        "visualization": "Visualization"
+        "visualization": "Visualization",
+        "patientid": "Patient ID",
+        "bloodGlucoseLevel": "Blood Glucose Level",
+        "amountofData": "Amount of Data",
+        "historyData": "History Data",
+        "selectPatientid": "Select Patient ID",
+        "datetime": "Date Time",
+        "upperRedFlagDesc": "Blood sugar is very high and requires immediate treatment",
+        "upperYellowFlagDesc": "Blood sugar is above normal levels",
+        "lowerRedFlagDesc": "Blood sugar is critically low and requires immediate treatment",
+        "lowerYellowFlagDesc": "Blood sugar levels should be watched and treated as needed"
     }
 }
