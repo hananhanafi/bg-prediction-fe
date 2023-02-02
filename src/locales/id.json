@@ -59,6 +59,7 @@
         "upperRedFlagDesc": "Gula darah sangat tinggi dan membutuhkan penaganan segera",
         "upperYellowFlagDesc": "Gula darah diatas level normal dan ditangani sesuai kebutuhan",
         "lowerRedFlagDesc": "Gula darah sangat rendah dan membutuhkan penaganan segera",
-        "lowerYellowFlagDesc": "Gula darah dibawah normal dan ditangani sesuai kebutuhan"
+        "lowerYellowFlagDesc": "Gula darah dibawah normal dan ditangani sesuai kebutuhan",
+        "nextPredictionIn": "Prediksi Selanjutnya Dalam {hours} Jam"
     }
 }

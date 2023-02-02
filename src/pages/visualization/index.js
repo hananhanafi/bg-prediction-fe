@@ -3,8 +3,10 @@ import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import PatientsRecordsRepository from '@/repositories/PatientRecordsRepository';
 import { Row, Col, Space, Table, Tag, Select, Typography, Divider } from 'antd';
-import {Bar} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 import { registerables, Chart } from "chart.js";
+import moment from 'moment';
+
 Chart.register(...registerables);
 
 export default function Visualization() {
@@ -24,6 +26,18 @@ export default function Visualization() {
     const [bottomLimitList, setBottomLimitList] = useState([]);
     const [bottomLowerLimitList, setBottomLowerLimitList] = useState([]);
     
+    const [dataToPredict, setDataToPredict] = useState([]);
+    const [predictedData, setpredictedData] = useState([]);
+    const [predictedlineDataLabel, setPredictedLineDataLabel] = useState([]);
+    const [predictedlineDataChart, setPredictedLineDataChart] = useState([]);
+    const [lastDate, setlastDate] = useState(new Date());
+
+    const addMinutes = (date, minutes) => {
+        date.setMinutes(date.getMinutes() + minutes);
+      
+        return date;
+    }
+
     // effects
     useEffect(()=> {
         PatientsRecordsRepository.getIdList({})
@@ -35,10 +49,8 @@ export default function Visualization() {
         });
     }, [])
     useEffect(()=> {
-        setTopLimitList([])
-        setBottomLimitList([])
         PatientsRecordsRepository.getDetail(selectedPatient)
-        .then((res)=>{
+        .then(async (res)=>{
             const data = res.data;
             let resdata = data?.data ??[];
             const lenData = resdata.length;
@@ -56,8 +68,61 @@ export default function Visualization() {
             setBottomLowerLimitList(Array(lenData).fill(50))
             resdata = resdata.map((data,index)=>{return{...data,'key':index+1}})
             setList(resdata);
+            const last6Data = resdata.slice(resdata.length-6,resdata.length);
+            setDataToPredict(new Array(last6Data.map(data=>{return data.bg_level})));
+            setlastDate(new Date(last6Data[last6Data.length-1].bg_datetime));
+            return () => {
+                // cancel 
+                setTopLimitList([]);
+                setTopHigherLimitList([]);
+                setBottomLimitList([]);
+                setBottomLowerLimitList([]);
+                setDataToPredict([]);
+            };
         });
     }, [selectedPatient])
+
+    useEffect(()=>{
+        predictData();
+        return () => {
+            // cancel 
+            console.log("clean")
+            setpredictedData([]);
+            setPredictedLineDataLabel([]);
+            setPredictedLineDataChart([]);
+        };
+    }
+    ,[dataToPredict])
+
+    const predictData = async () => {
+        if(dataToPredict[0]){
+            let newDateArr = []
+            let newPredictedArr = []
+            let newPredictedObjArr = []
+            for(let i = 1; i<=12; i++){
+                const payloadPredict = {
+                    "data": dataToPredict,
+                    "ph": i
+                }
+                await PatientsRecordsRepository.predict(payloadPredict).then((resPred)=>{
+                    const predict = resPred.data?.data[0] ?? 0;
+                    const newDate = moment(addMinutes(lastDate,5)).format("YYYY-MM-DD HH:mm:ss");
+                    const objPredict = {
+                        "pt_id": selectedPatient,
+                        "key": i,
+                        "bg_level": predict,
+                        "bg_datetime": newDate,
+                    }
+                    newDateArr.push(newDate);
+                    newPredictedArr.push(predict);
+                    newPredictedObjArr.push(objPredict);
+                })
+            }
+            setPredictedLineDataLabel(newDateArr);
+            setPredictedLineDataChart(newPredictedArr);
+            setpredictedData(newPredictedObjArr);
+        }
+    }
 
     const handleChange = (value) => {
         setSelectedPatient(value)
@@ -99,33 +164,8 @@ export default function Visualization() {
         },
     }
 
-    const dataLine = {
-        labels: lineDataLabel,
-        datasets: [
-          {
-            label: t('bloodGlucoseLevel')+' (mg/dL)',
-            fill: false,
-            lineTension: 0.1,
-            // backgroundColor: "rgba(220, 53, 69, 1)",
-            backgroundColor: "rgba(255, 255, 255, 1)",
-            borderColor: 'rgba(0, 0, 0, .8)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'black',
-            pointBackgroundColor: 'black',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'black',
-            pointHoverBorderColor: 'rgba(255,255,255,1)',
-            pointHoverBorderWidth: 0,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: lineData,
-            type: 'line',
-          },
-          {
+    const limitDatasets = [
+        {
             label: t('upperRedFlagDesc'),
             fill: 'end',
             data: topHigherLimitList,
@@ -171,7 +211,6 @@ export default function Visualization() {
             pointRadius: 1,
             pointHitRadius: 10,
           },
-          
           {
             label: t('lowerRedFlagDesc'),
             fill: 'start',
@@ -218,6 +257,66 @@ export default function Visualization() {
             pointRadius: 1,
             pointHitRadius: 10,
           },
+    ]
+
+    const dataLine = {
+        labels: lineDataLabel,
+        datasets: [
+          {
+            label: t('bloodGlucoseLevel')+' (mg/dL)',
+            fill: false,
+            lineTension: 0.1,
+            // backgroundColor: "rgba(220, 53, 69, 1)",
+            backgroundColor: "rgba(255, 255, 255, 1)",
+            borderColor: 'rgba(0, 0, 0, .8)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'black',
+            pointBackgroundColor: 'black',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'black',
+            pointHoverBorderColor: 'rgba(255,255,255,1)',
+            pointHoverBorderWidth: 0,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: lineData,
+            type: 'line',
+          },
+          ...limitDatasets
+        ]
+    };
+
+
+    const dataLinePredicted = {
+        labels: predictedlineDataLabel,
+        datasets: [
+          {
+            label: t('bloodGlucoseLevel')+' (mg/dL)',
+            fill: false,
+            lineTension: 0.1,
+            // backgroundColor: "rgba(220, 53, 69, 1)",
+            backgroundColor: "rgba(255, 255, 255, 1)",
+            borderColor: 'rgba(0, 0, 0, .8)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'black',
+            pointBackgroundColor: 'black',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'black',
+            pointHoverBorderColor: 'rgba(255,255,255,1)',
+            pointHoverBorderWidth: 0,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: predictedlineDataChart,
+            type: 'line',
+          },
+          ...limitDatasets
         ]
     };
     return (
@@ -252,13 +351,61 @@ export default function Visualization() {
             </Row>
             <Row justify="center" align="middle"> 
                 <Col span={24}>
-                {/* <Table columns={columns} dataSource={list} /> */}
-                <Bar
-                    data={dataLine}
-                    // width={400}
-                    height={600}
-                    options={chartOptions}
-                />
+                    <Line
+                        data={dataLine}
+                        // width={400}
+                        height={600}
+                        options={chartOptions}
+                    />
+                </Col>
+                <Divider></Divider>
+                <Col span={24} class='text-center'>
+                    <Typography.Title level={3}>
+                        {t('nextPredictionIn',{hours:1})}
+                    </Typography.Title>
+                </Col>
+                <Col span={24}>
+                    <Line
+                        data={dataLinePredicted}
+                        // width={400}
+                        height={400}
+                        options={{
+                            ...chartOptions,
+                            plugins: {
+                                legend:{
+                                    display:false
+                                }
+                            }
+                            // responsive: true,
+                            // maintainAspectRatio: false,
+                            // plugins: {
+                            //     legend: {
+                            //             position: "top",
+                            //             align: "center",
+                            //             labels: {
+                            //             boxWidth: 7,
+                            //             usePointStyle: true,
+                            //             pointStyle: "circle",
+                            //         },
+                            //     },
+                            // },
+                            // scales: {
+                            //     y: {
+                            //         max: maxData+50,
+                            //         title: {
+                            //             display: true,
+                            //             text: t('bloodGlucoseLevel')+' (mg/dL)'
+                            //         }
+                            //     },
+                            //     x: {
+                            //         title: {
+                            //             display: true,
+                            //             text: t('datetime')
+                            //         }
+                            //     }
+                            // },
+                        }}
+                    />
                 </Col>
             </Row>
         </ContainerAdmin>

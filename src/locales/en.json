@@ -59,6 +59,7 @@
         "upperRedFlagDesc": "Blood sugar is very high and requires immediate treatment",
         "upperYellowFlagDesc": "Blood sugar is above normal levels",
         "lowerRedFlagDesc": "Blood sugar is critically low and requires immediate treatment",
-        "lowerYellowFlagDesc": "Blood sugar levels should be watched and treated as needed"
+        "lowerYellowFlagDesc": "Blood sugar levels should be watched and treated as needed",
+        "nextPredictionIn": "Next Prediction In {hours} Hours"
     }
 }

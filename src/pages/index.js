@@ -20,7 +20,7 @@ export default function Home() {
         </Col>
         <Col span={24}>
           <div className='text-center'>
-            <Link href='/admin' locale={locale}>
+            <Link href='/get-prediction' locale={locale}>
               <Button type="primary" danger shape='round'>
                 {t('getprediction')}
               </Button>
