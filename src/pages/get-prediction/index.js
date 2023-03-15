@@ -300,6 +300,7 @@ export default function GetPrediction() {
           >
             {[...Array(6)].map((x, i) => (
               <Form.Item
+                key={i+1}
                 label={t("bloodGlucoseLevel") + " - " + (i + 1)}
                 name={"bg_" + (i + 1)}
                 rules={[
