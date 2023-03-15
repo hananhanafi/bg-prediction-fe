@@ -1,7 +1,7 @@
 {
     "Home": {
         "hello": "Welcome to",
-        "bgtitle": "Blood Glucos Prediction System",
+        "bgtitle": "Blood Glucose Prediction System",
         "getprediction": "Get Prediction",
         "about": "About"
     },
@@ -36,7 +36,28 @@
         "admin": "Admin"
     },
     "GetPrediction": {
-        "getprediction": "Get Prediction"
+        "getprediction": "Get Prediction",
+        "patientid": "Patient ID",
+        "bloodGlucoseLevel": "Blood Glucose Level",
+        "amountofData": "Amount of Data",
+        "historyData": "History Data",
+        "selectPatientid": "Select Patient ID",
+        "datetime": "Date Time",
+        "upperRedFlagDesc": "Blood sugar is very high and requires immediate treatment",
+        "upperYellowFlagDesc": "Blood sugar is above normal levels",
+        "lowerRedFlagDesc": "Blood sugar is critically low and requires immediate treatment",
+        "lowerYellowFlagDesc": "Blood sugar levels should be watched and treated as needed",
+        "nextPredictionIn": "Next Prediction In {hours} Hours",
+        "input": "Input",
+        "predictionResult": "Prediction Result",
+
+        "inputData": "Input Data",
+        "predicting": "Predicting",
+        "result": "Result",
+        "pleaseInput": "Please Input",
+        "submit": "Submit",
+        "back": "Back",
+        "predictionDistance": "Prediction Distance"
     },
     "Data": {
         "datasource": "Data Source",

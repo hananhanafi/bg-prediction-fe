@@ -36,7 +36,28 @@
         "admin": "Admin"
     },
     "GetPrediction": {
-        "getprediction": "Get Prediction"
+        "getprediction": "Get Prediction",
+        "patientid": "ID Pasien",
+        "bloodGlucoseLevel": "Kadar Gula Darah",
+        "amountofData": "Jumlah Data",
+        "historyData": "Riwayat Data",
+        "selectPatientid": "Pilih ID Pasien",
+        "datetime": "Tanggal & Waktu",
+        "upperRedFlagDesc": "Gula darah sangat tinggi dan membutuhkan penaganan segera",
+        "upperYellowFlagDesc": "Gula darah diatas level normal dan ditangani sesuai kebutuhan",
+        "lowerRedFlagDesc": "Gula darah sangat rendah dan membutuhkan penaganan segera",
+        "lowerYellowFlagDesc": "Gula darah dibawah normal dan ditangani sesuai kebutuhan",
+        "nextPredictionIn": "Prediksi Selanjutnya Dalam {hours} Jam",
+        "input": "Masukkan",
+        "predictionResult": "Hasil Prediksi",
+
+        "inputData": "Masukkan Data",
+        "predicting": "Memprediksi",
+        "result": "Hasil",
+        "pleaseInput": "Mohon Masukkan",
+        "submit": "Kirim",
+        "back": "Kembali",
+        "predictionDistance": "Jarak Prediksi"
     },
     "Data": {
         "datasource": "Sumber Data",

@@ -31,7 +31,7 @@ export default function Login() {
     
     useEffect(() => {
         if (session && status !== 'loading') { 
-            router.push('/admin') 
+            router.push('/get-prediction') 
         }
         // declare the data fetching function
         const fetchData = async () => {

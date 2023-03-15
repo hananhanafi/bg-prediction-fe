@@ -96,31 +96,25 @@ export default function Visualization() {
 
     const predictData = async () => {
         if(dataToPredict[0]){
-            let newDateArr = []
-            let newPredictedArr = []
-            let newPredictedObjArr = []
-            for(let i = 1; i<=12; i++){
-                const payloadPredict = {
-                    "data": dataToPredict,
-                    "ph": i
-                }
-                await PatientsRecordsRepository.predict(payloadPredict).then((resPred)=>{
-                    const predict = resPred.data?.data[0] ?? 0;
-                    const newDate = moment(addMinutes(lastDate,5)).format("YYYY-MM-DD HH:mm:ss");
-                    const objPredict = {
-                        "pt_id": selectedPatient,
-                        "key": i,
-                        "bg_level": predict,
-                        "bg_datetime": newDate,
-                    }
-                    newDateArr.push(newDate);
-                    newPredictedArr.push(predict);
-                    newPredictedObjArr.push(objPredict);
-                })
+            const payloadPredict = {
+                "data": dataToPredict,
+                "ph": 12
             }
-            setPredictedLineDataLabel(newDateArr);
-            setPredictedLineDataChart(newPredictedArr);
-            setpredictedData(newPredictedObjArr);
+            await PatientsRecordsRepository.predict(payloadPredict).then((resPred)=>{
+                const predict = resPred.data?.data ?? 0;
+                const remapPredict = predict.map((pred,index)=>{
+                    return {
+                        "pt_id": selectedPatient,
+                        "key": index+1,
+                        "bg_level": pred,
+                        "bg_datetime": moment(addMinutes(lastDate,5)).format("YYYY-MM-DD HH:mm:ss"),
+                    }
+                })
+                const labels = remapPredict.map((pred)=>{return pred.bg_datetime})
+                setPredictedLineDataLabel(labels);
+                setPredictedLineDataChart(predict);
+                setpredictedData(remapPredict);
+            })
         }
     }
 
@@ -359,7 +353,7 @@ export default function Visualization() {
                     />
                 </Col>
                 <Divider></Divider>
-                <Col span={24} class='text-center'>
+                <Col span={24} className='text-center'>
                     <Typography.Title level={3}>
                         {t('nextPredictionIn',{hours:1})}
                     </Typography.Title>
@@ -376,34 +370,6 @@ export default function Visualization() {
                                     display:false
                                 }
                             }
-                            // responsive: true,
-                            // maintainAspectRatio: false,
-                            // plugins: {
-                            //     legend: {
-                            //             position: "top",
-                            //             align: "center",
-                            //             labels: {
-                            //             boxWidth: 7,
-                            //             usePointStyle: true,
-                            //             pointStyle: "circle",
-                            //         },
-                            //     },
-                            // },
-                            // scales: {
-                            //     y: {
-                            //         max: maxData+50,
-                            //         title: {
-                            //             display: true,
-                            //             text: t('bloodGlucoseLevel')+' (mg/dL)'
-                            //         }
-                            //     },
-                            //     x: {
-                            //         title: {
-                            //             display: true,
-                            //             text: t('datetime')
-                            //         }
-                            //     }
-                            // },
                         }}
                     />
                 </Col>

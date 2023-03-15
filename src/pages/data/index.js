@@ -2,7 +2,7 @@ import ContainerAdmin from '@/components/layouts/ContainerAdmin';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import PatientsRecordsRepository from '@/repositories/PatientRecordsRepository';
-import { Row, Col, Space, Table, Tag, Select, Typography, Divider } from 'antd';
+import { Row, Col, Space, Table, Tag, Select, Typography, Divider, Skeleton } from 'antd';
 import {Bar} from 'react-chartjs-2';
 import { registerables, Chart } from "chart.js";
 Chart.register(...registerables);
@@ -61,6 +61,7 @@ export default function Data() {
   const [minData, setMinData] = useState(0);
   const [maxData, setMaxData] = useState(0);
   const [averageData, setAverageData] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const columns = [
     {
@@ -92,6 +93,7 @@ export default function Data() {
       });
   }, [])
   useEffect(()=> {
+      setIsLoading(true);
       PatientsRecordsRepository.getDetail(selectedPatient)
       .then((res)=>{
           const data = res.data;
@@ -113,6 +115,10 @@ export default function Data() {
           }
           resdata = resdata.map((data,index)=>{return{...data,'key':index+1}})
           setList(resdata);
+          setIsLoading(false);
+      })
+      .catch((e)=>{
+        setIsLoading(false);
       });
   }, [selectedPatient])
   
@@ -173,7 +179,7 @@ export default function Data() {
       </Row>
       <Row justify="center" align="middle"> 
         <Col span={24}>
-          <Table columns={columns} dataSource={list} />
+          <Table columns={columns} dataSource={list} loading={isLoading}/>
         </Col>
       </Row>
       
@@ -207,11 +213,14 @@ export default function Data() {
           </table>
         </Col>
         <Col span={24}>
-          <Bar
+          {isLoading ? 
+          <Skeleton.Image active className="w-100" style={{height:400}}/> 
+          : <Bar
             data={dataHistogram}
             height={400}
             options={chartOptions}
-          />
+          />}
+          
         </Col>
       </Row>
 

@@ -2,40 +2,52 @@ import Repository, { baseUrl, serializeQuery } from './Repository';
 
 class PatientRecordsRepository {
     async getList(params){
-        try {
+        return new Promise(async(resolve,reject)=>{
             const url = `${baseUrl}/patients?${serializeQuery(params)}`;
-            const response = await Repository.get(url);
-            return response;
-        } catch(err) {
-            throw Error(err);
-        }
+            await Repository.get(url)
+            .then((res)=>{
+                resolve(res);
+            })
+            .catch((err)=>{
+                reject(err);
+            });
+        })
     }
     async getIdList(params){
-        try {
+        return new Promise(async(resolve,reject)=>{
             const url = `${baseUrl}/patients_id?${serializeQuery(params)}`;
-            const response = await Repository.get(url);
-            return response;
-        } catch(err) {
-            throw Error(err);
-        }
+            await Repository.get(url)
+            .then((res)=>{
+                resolve(res);
+            })
+            .catch((err)=>{
+                reject(err);
+            });
+        })
     }
     async getDetail(id){
-        try {
+        return new Promise(async(resolve,reject)=>{
             const url = `${baseUrl}/patient/${id}`;
-            const response = await Repository.get(url);
-            return response;
-        } catch(err) {
-            throw Error(err);
-        }
+            await Repository.get(url)
+            .then((res)=>{
+                resolve(res);
+            })
+            .catch((err)=>{
+                reject(err);
+            });
+        })
     }
     async predict(payload) {
-        try {
+        return new Promise(async(resolve,reject)=>{
             const url = `${baseUrl}/patient/predict`;
-            const response = await Repository.post(url, payload);
-            return response;
-        } catch(err) {
-            throw Error(err);
-        }
+            await Repository.post(url, payload)
+            .then((res)=>{
+                resolve(res);
+            })
+            .catch((err)=>{
+                reject(err);
+            });
+        })
     }
 }
 

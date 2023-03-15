@@ -61,16 +61,16 @@ const HeaderAdmin = ({ children }) => {
       ),
       key: 'logo',
     },
-    {
-      label: (
-        <Link href='/admin' locale={locale}>
-          <Button type="text" danger={pathname==='/admin'?true:false} className='ms-2'>
-            {t('home')}
-          </Button>
-        </Link>
-      ),
-      key: 'home',
-    },
+    // {
+    //   label: (
+    //     <Link href='/admin' locale={locale}>
+    //       <Button type="text" danger={pathname==='/admin'?true:false} className='ms-2'>
+    //         {t('home')}
+    //       </Button>
+    //     </Link>
+    //   ),
+    //   key: 'home',
+    // },
     {
       label: (
         <Link href='/get-prediction' locale={locale}>
