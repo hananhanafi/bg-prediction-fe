@@ -4,7 +4,7 @@ export const customHeaders = {
   Accept: 'application/json',
 };
 
-export const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000/';
+export const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000';
 
 export default axios.create({
     baseUrl,
