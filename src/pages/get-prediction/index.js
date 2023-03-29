@@ -38,7 +38,6 @@ export default function GetPrediction() {
     return date;
   };
   const predictData = async (dataToPredict, ph) => {
-    // setlastDate(new Date())
     const nLastdate = subMinutes(new Date(), 35)
     console.log(nLastdate);
     if (dataToPredict[0]) {
@@ -138,6 +137,10 @@ export default function GetPrediction() {
           text: t("bloodGlucoseLevel") + " (mg/dL)",
         },
         min: 0,
+        ticks: {
+          // forces step size to be 50 units
+          stepSize: 50
+        }
       },
       x: {
         title: {
@@ -271,7 +274,7 @@ export default function GetPrediction() {
           borderColor: (ctx) => down(ctx, "rgb(192,75,75)"),
         },
       },
-      // ...limitDatasets,
+      ...limitDatasets,
     ],
   };
 
@@ -372,7 +375,7 @@ export default function GetPrediction() {
           <Line
             data={dataLinePredicted}
             // width={400}
-            height={200}
+            height={100}
             options={{
               ...chartOptions,
               plugins: {

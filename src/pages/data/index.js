@@ -182,9 +182,7 @@ export default function Data() {
           <Table columns={columns} dataSource={list} loading={isLoading}/>
         </Col>
       </Row>
-      
       <Divider/>
-
       <Row justify="center" align="middle"> 
         <Col span={24}>
           <Typography.Title level={3}>
@@ -220,10 +218,8 @@ export default function Data() {
             height={400}
             options={chartOptions}
           />}
-          
         </Col>
       </Row>
-
     </ContainerAdmin>
   )
 }
