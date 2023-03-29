@@ -81,7 +81,7 @@ export default function Login() {
                           >
                             {t("continueWith")} {provider.name}
                             <Image
-                              src={"/" + provider.id + "-icon.png"}
+                              src={"/icon-" + provider.id + ".png"}
                               width={20}
                               height={20}
                               className="ms-2"
