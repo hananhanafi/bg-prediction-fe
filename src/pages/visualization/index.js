@@ -346,6 +346,7 @@ export default function Visualization() {
             <Row justify="center" align="middle"> 
                 <Col span={24}>
                     <Line
+                        id='chart-patient-bg-record'
                         data={dataLine}
                         // width={400}
                         height={600}
@@ -360,6 +361,7 @@ export default function Visualization() {
                 </Col>
                 <Col span={24}>
                     <Line
+                        id='prediction-chart-patient-bg-record'
                         data={dataLinePredicted}
                         // width={400}
                         height={400}

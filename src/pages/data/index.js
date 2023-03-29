@@ -179,7 +179,7 @@ export default function Data() {
       </Row>
       <Row justify="center" align="middle"> 
         <Col span={24}>
-          <Table columns={columns} dataSource={list} loading={isLoading}/>
+          <Table id='table-data-source' columns={columns} dataSource={list} loading={isLoading}/>
         </Col>
       </Row>
       <Divider/>
@@ -214,6 +214,7 @@ export default function Data() {
           {isLoading ? 
           <Skeleton.Image active className="w-100" style={{height:400}}/> 
           : <Bar
+            id='bar-chart-data-distribution'
             data={dataHistogram}
             height={400}
             options={chartOptions}

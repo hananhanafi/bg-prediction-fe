@@ -373,6 +373,7 @@ export default function GetPrediction() {
             </div>
           </div>
           <Line
+            id="prediction-result"
             data={dataLinePredicted}
             // width={400}
             height={100}
