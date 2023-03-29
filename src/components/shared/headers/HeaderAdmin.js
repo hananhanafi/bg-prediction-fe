@@ -73,7 +73,7 @@ const HeaderAdmin = ({ children }) => {
     // },
     {
       label: (
-        <Link href='/get-prediction' locale={locale}>
+        <Link id='get-prediction' href='/get-prediction' locale={locale}>
           <Button type="text" className='ms-2' danger={pathname==='/get-prediction'?true:false} >
             {t('getprediction')}
           </Button>
@@ -83,7 +83,7 @@ const HeaderAdmin = ({ children }) => {
     },
     {
       label: (
-        <Link href='/data' locale={locale}>
+        <Link id='data-source' href='/data' locale={locale}>
           <Button type="text" danger={pathname==='/data'?true:false} className='ms-2'>
             {t('datasource')}
           </Button>
@@ -93,7 +93,7 @@ const HeaderAdmin = ({ children }) => {
     },
     {
       label: (
-        <Link href='/visualization' locale={locale}>
+        <Link id='visualization' href='/visualization' locale={locale}>
           <Button type="text" danger={pathname==='/visualization'?true:false} className='ms-2'>
             {t('visualization')}
           </Button>

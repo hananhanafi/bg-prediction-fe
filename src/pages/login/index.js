@@ -75,6 +75,7 @@ export default function Login() {
                       return (
                         <div key={provider.name}>
                           <Button
+                            id={"btn-login-" + provider.id}
                             size="large"
                             onClick={() => signIn(provider.id)}
                             className="w-100 mb-2"

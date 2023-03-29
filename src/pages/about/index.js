@@ -19,7 +19,7 @@ export default function About() {
             </p>
           </div>
           <Link href='/' locale={locale}>
-            <Button type="primary" shape='round' icon={<ArrowLeftOutlined />}>
+            <Button id='btn-back' type="primary" shape='round' icon={<ArrowLeftOutlined />}>
               {t('back')}
             </Button>
           </Link>

@@ -344,7 +344,7 @@ export default function GetPrediction() {
               }}
               style={{ textAlign: "right" }}
             >
-              <Button type="primary" htmlType="submit" size="large">
+              <Button id="btn-submit" type="primary" htmlType="submit" size="large">
                 {t("submit")}
               </Button>
             </Form.Item>
@@ -387,7 +387,7 @@ export default function GetPrediction() {
             }}
           />
           <div className="text-end">
-            <Button type="primary" onClick={() => setCurrent(0)} size="large">
+            <Button id="btn-back" type="primary" onClick={() => setCurrent(0)} size="large">
               {t("back")}
             </Button>
           </div>

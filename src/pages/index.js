@@ -21,12 +21,12 @@ export default function Home() {
         <Col span={24}>
           <div className='text-center'>
             <Link href='/get-prediction' locale={locale}>
-              <Button type="primary" danger shape='round'>
+              <Button id='btn-getprediction' type="primary" danger shape='round'>
                 {t('getprediction')}
               </Button>
             </Link>
             <Link href='/about' locale={locale}>
-              <Button type="text" shape='round' className='ms-2'>
+              <Button id='btn-about' type="text" shape='round' className='ms-2'>
                 {t('about')}
               </Button>
             </Link>
