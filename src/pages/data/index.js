@@ -211,14 +211,12 @@ export default function Data() {
           </table>
         </Col>
         <Col span={24}>
-          {isLoading ? 
-          <Skeleton.Image active className="w-100" style={{height:400}}/> 
-          : <Bar
+          <Bar
             id='bar-chart-data-distribution'
             data={dataHistogram}
             height={400}
             options={chartOptions}
-          />}
+          />
         </Col>
       </Row>
     </ContainerAdmin>
