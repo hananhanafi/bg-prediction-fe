@@ -38,7 +38,7 @@ export default function GetPrediction() {
     return date;
   };
   const predictData = async (dataToPredict, ph) => {
-    const nLastdate = subMinutes(new Date(), 35)
+    const nLastdate = subMinutes(new Date(), 30)
     console.log(nLastdate);
     if (dataToPredict[0]) {
       const payloadPredict = {
@@ -59,7 +59,7 @@ export default function GetPrediction() {
               key: index + 1,
               bg_level: pred,
               bg_datetime: moment(addMinutes(nLastdate, 5)).format(
-                "YYYY-MM-DD HH:mm:ss"
+                "YYYY-MM-DD HH:mm"
               ),
             };
           });
@@ -259,11 +259,11 @@ export default function GetPrediction() {
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: "miter",
-        pointBorderColor: "black",
-        pointBackgroundColor: "black",
-        pointBorderWidth: 1,
+        pointBorderColor: "rgba(0, 0, 0, 1)",
+        pointBackgroundColor: "rgba(0, 0, 0, 1)",
+        pointBorderWidth: 2,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "black",
+        pointHoverBackgroundColor: "rgba(0, 0, 0, 1)",
         pointHoverBorderColor: "rgba(255,255,255,1)",
         pointHoverBorderWidth: 0,
         pointRadius: 1,
@@ -272,6 +272,9 @@ export default function GetPrediction() {
         type: "line",
         segment: {
           borderColor: (ctx) => down(ctx, "rgb(192,75,75)"),
+          pointBorderColor: (ctx) => down(ctx, "rgb(192,75,75)"),
+          pointBackgroundColor: (ctx) => down(ctx, "rgb(192,75,75)"),
+          pointHoverBackgroundColor: (ctx) => down(ctx, "rgb(192,75,75)"),
         },
       },
       ...limitDatasets,
@@ -339,8 +342,7 @@ export default function GetPrediction() {
 
             <Form.Item
               wrapperCol={{
-                offset: 8,
-                span: 16,
+                lg: 24,
               }}
               style={{ textAlign: "right" }}
             >
