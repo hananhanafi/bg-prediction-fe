@@ -44,7 +44,7 @@
         "selectPatientid": "Pilih ID Pasien",
         "datetime": "Tanggal & Waktu",
         "hyperglycemiaDescription": "Hyperglycemia (Gula darah sangat tinggi dan membutuhkan penaganan segera)",
-        "hypoglycemiaDescription": "Hyperglycemia (Gula darah sangat rendah dan membutuhkan penaganan segera)",
+        "hypoglycemiaDescription": "Hypoglycemia (Gula darah sangat rendah dan membutuhkan penaganan segera)",
         "nextPredictionIn": "Prediksi Selanjutnya Dalam {hours} Jam",
         "input": "Masukkan",
         "predictionResult": "Hasil Prediksi",
@@ -76,7 +76,7 @@
         "selectPatientid": "Pilih ID Pasien",
         "datetime": "Tanggal & Waktu",
         "hyperglycemiaDescription": "Hyperglycemia (Gula darah sangat tinggi dan membutuhkan penaganan segera)",
-        "hypoglycemiaDescription": "Hyperglycemia (Gula darah sangat rendah dan membutuhkan penaganan segera)",
+        "hypoglycemiaDescription": "Hypoglycemia (Gula darah sangat rendah dan membutuhkan penaganan segera)",
         "nextPredictionIn": "Prediksi Selanjutnya Dalam {hours} Jam"
     }
 }

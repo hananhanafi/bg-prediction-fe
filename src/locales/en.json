@@ -44,7 +44,7 @@
         "selectPatientid": "Select Patient ID",
         "datetime": "Date Time",
         "hyperglycemiaDescription": "Hyperglycemia (Blood sugar is very high and requires immediate treatment)",
-        "hypoglycemiaDescription": "Hyperglycemia (Blood sugar is critically low and requires immediate treatment)",
+        "hypoglycemiaDescription": "Hypoglycemia (Blood sugar is critically low and requires immediate treatment)",
         "nextPredictionIn": "Next Prediction In {hours} Hours",
         "input": "Input",
         "predictionResult": "Prediction Result",
@@ -76,7 +76,7 @@
         "selectPatientid": "Select Patient ID",
         "datetime": "Date Time",
         "hyperglycemiaDescription": "Hyperglycemia (Blood sugar is very high and requires immediate treatment)",
-        "hypoglycemiaDescription": "Hyperglycemia (Blood sugar is critically low and requires immediate treatment)",
+        "hypoglycemiaDescription": "Hypoglycemia (Blood sugar is critically low and requires immediate treatment)",
         "nextPredictionIn": "Next Prediction In {hours} Hours"
     }
 }
