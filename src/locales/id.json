@@ -43,10 +43,8 @@
         "historyData": "Riwayat Data",
         "selectPatientid": "Pilih ID Pasien",
         "datetime": "Tanggal & Waktu",
-        "upperRedFlagDesc": "Gula darah sangat tinggi dan membutuhkan penaganan segera",
-        "upperYellowFlagDesc": "Gula darah diatas level normal dan ditangani sesuai kebutuhan",
-        "lowerRedFlagDesc": "Gula darah sangat rendah dan membutuhkan penaganan segera",
-        "lowerYellowFlagDesc": "Gula darah dibawah normal dan ditangani sesuai kebutuhan",
+        "hyperglycemiaDescription": "Hyperglycemia (Gula darah sangat tinggi dan membutuhkan penaganan segera)",
+        "hypoglycemiaDescription": "Hyperglycemia (Gula darah sangat rendah dan membutuhkan penaganan segera)",
         "nextPredictionIn": "Prediksi Selanjutnya Dalam {hours} Jam",
         "input": "Masukkan",
         "predictionResult": "Hasil Prediksi",
@@ -77,10 +75,8 @@
         "historyData": "Riwayat Data",
         "selectPatientid": "Pilih ID Pasien",
         "datetime": "Tanggal & Waktu",
-        "upperRedFlagDesc": "Gula darah sangat tinggi dan membutuhkan penaganan segera",
-        "upperYellowFlagDesc": "Gula darah diatas level normal dan ditangani sesuai kebutuhan",
-        "lowerRedFlagDesc": "Gula darah sangat rendah dan membutuhkan penaganan segera",
-        "lowerYellowFlagDesc": "Gula darah dibawah normal dan ditangani sesuai kebutuhan",
+        "hyperglycemiaDescription": "Hyperglycemia (Gula darah sangat tinggi dan membutuhkan penaganan segera)",
+        "hypoglycemiaDescription": "Hyperglycemia (Gula darah sangat rendah dan membutuhkan penaganan segera)",
         "nextPredictionIn": "Prediksi Selanjutnya Dalam {hours} Jam"
     }
 }

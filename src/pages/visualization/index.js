@@ -21,10 +21,8 @@ export default function Visualization() {
     const [averageData, setAverageData] = useState(0);
     const [lineDataLabel, setLineDataLabel] = useState([]);
     const [lineData, setLineData] = useState([]);
-    const [topHigherLimitList, setTopHigherLimitList] = useState([]);
-    const [topLimitList, setTopLimitList] = useState([]);
-    const [bottomLimitList, setBottomLimitList] = useState([]);
-    const [bottomLowerLimitList, setBottomLowerLimitList] = useState([]);
+    const [hyperglycemiaLimitList, setHyperglycemiaLimitList] = useState([]);
+    const [hypoglycemiaLimitList, setHypoglycemiaLimitList] = useState([]);
     
     const [dataToPredict, setDataToPredict] = useState([]);
     const [predictedData, setpredictedData] = useState([]);
@@ -62,10 +60,8 @@ export default function Visualization() {
             const bgLevelArr = resdata.map((data)=>{return data.bg_level})
             setLineDataLabel(bgDateTimeArr);
             setLineData(bgLevelArr);
-            setTopHigherLimitList(Array(lenData).fill(250))
-            setTopLimitList(Array(lenData).fill(180))
-            setBottomLimitList(Array(lenData).fill(90))
-            setBottomLowerLimitList(Array(lenData).fill(50))
+            setHyperglycemiaLimitList(Array(lenData).fill(180))
+            setHypoglycemiaLimitList(Array(lenData).fill(70))
             resdata = resdata.map((data,index)=>{return{...data,'key':index+1}})
             setList(resdata);
             const last6Data = resdata.slice(resdata.length-6,resdata.length);
@@ -73,10 +69,8 @@ export default function Visualization() {
             setlastDate(new Date(last6Data[last6Data.length-1].bg_datetime));
             return () => {
                 // cancel 
-                setTopLimitList([]);
-                setTopHigherLimitList([]);
-                setBottomLimitList([]);
-                setBottomLowerLimitList([]);
+                setHypoglycemiaLimitList([]);
+                setHyperglycemiaLimitList([]);
                 setDataToPredict([]);
             };
         });
@@ -160,9 +154,9 @@ export default function Visualization() {
 
     const limitDatasets = [
         {
-            label: t('upperRedFlagDesc'),
+            label: t('hyperglycemiaDescription'),
             fill: 'end',
-            data: topHigherLimitList,
+            data: hyperglycemiaLimitList,
             type: 'line',
             backgroundColor: "rgba(220, 53, 69, 1)",
             pointHoverBackgroundColor: 'white',
@@ -183,9 +177,9 @@ export default function Visualization() {
             pointHitRadius: 10,
           },
           {
-            label: t('upperYellowFlagDesc'),
-            fill: 'end',
-            data: topLimitList,
+            label: t('hypoglycemiaDescription'),
+            fill: 'start',
+            data: hypoglycemiaLimitList,
             type: 'line',
             backgroundColor: "rgba(255, 220, 50, 1)",
             pointHoverBackgroundColor: 'white',
@@ -198,52 +192,6 @@ export default function Visualization() {
             borderJoinStyle: 'miter',
             pointBorderColor: 'yellow',
             pointBackgroundColor: 'rgba(255, 220, 50, 1)',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBorderColor: 'rgba(0,0,0,1)',
-            pointHoverBorderWidth: 0,
-            pointRadius: 1,
-            pointHitRadius: 10,
-          },
-          {
-            label: t('lowerRedFlagDesc'),
-            fill: 'start',
-            data: bottomLowerLimitList,
-            type: 'line',
-            backgroundColor: "rgba(220, 53, 100, 1)",
-            pointHoverBackgroundColor: 'white',
-            
-            lineTension: 0.1,
-            borderColor: 'red',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'red',
-            pointBackgroundColor: 'rgba(220, 53, 100, 1)',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBorderColor: 'rgba(0,0,0,1)',
-            pointHoverBorderWidth: 0,
-            pointRadius: 1,
-            pointHitRadius: 10,
-          },
-          {
-            label: t('lowerYellowFlagDesc'),
-            fill: 'start',
-            data: bottomLimitList,
-            type: 'line',
-            backgroundColor: "rgba(255, 255, 155, 1)",
-            pointHoverBackgroundColor: 'white',
-            
-            lineTension: 0.1,
-            borderColor: 'yellow',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'yellow',
-            pointBackgroundColor: 'rgba(255, 255, 155, 1)',
             pointBorderWidth: 1,
             pointHoverRadius: 5,
             pointHoverBorderColor: 'rgba(0,0,0,1)',

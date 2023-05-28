@@ -14,10 +14,8 @@ export default function GetPrediction() {
 
   const [isLoadPredict, setisLoadPredict] = useState(false);
 
-  const [topHigherLimitList, setTopHigherLimitList] = useState([]);
-  const [topLimitList, setTopLimitList] = useState([]);
-  const [bottomLimitList, setBottomLimitList] = useState([]);
-  const [bottomLowerLimitList, setBottomLowerLimitList] = useState([]);
+  const [hyperglycemiaLimitList, setHyperglycemiaLimitList] = useState([]);
+  const [hypoglycemiaLimitList, setHypoglycemiaLimitList] = useState([]);
 
   //   const [dataToPredict, setDataToPredict] = useState([]);
   const [predictionHorizon, setpredictionHorizon] = useState(0);
@@ -50,10 +48,8 @@ export default function GetPrediction() {
           const predict = [...dataToPredict[0], ...(resPred.data?.data ?? 0)];
           const lenData = predict.length;
 
-          setTopHigherLimitList(Array(lenData).fill(250));
-          setTopLimitList(Array(lenData).fill(180));
-          setBottomLimitList(Array(lenData).fill(90));
-          setBottomLowerLimitList(Array(lenData).fill(50));
+          setHyperglycemiaLimitList(Array(lenData).fill(180))
+          setHypoglycemiaLimitList(Array(lenData).fill(70))
           const remapPredict = predict.map((pred, index) => {
             return {
               key: index + 1,
@@ -152,9 +148,9 @@ export default function GetPrediction() {
   };
   const limitDatasets = [
     {
-      label: t("upperRedFlagDesc"),
-      fill: "end",
-      data: topHigherLimitList,
+      label: t('hyperglycemiaDescription'),
+      fill: 'end',
+      data: hyperglycemiaLimitList,
       type: "line",
       backgroundColor: "rgba(220, 53, 69, 1)",
       pointHoverBackgroundColor: "white",
@@ -175,9 +171,9 @@ export default function GetPrediction() {
       pointHitRadius: 10,
     },
     {
-      label: t("upperYellowFlagDesc"),
-      fill: "end",
-      data: topLimitList,
+      label: t('hypoglycemiaDescription'),
+      fill: 'start',
+      data: hypoglycemiaLimitList,
       type: "line",
       backgroundColor: "rgba(255, 220, 50, 1)",
       pointHoverBackgroundColor: "white",
@@ -197,52 +193,7 @@ export default function GetPrediction() {
       pointRadius: 1,
       pointHitRadius: 10,
     },
-    {
-      label: t("lowerRedFlagDesc"),
-      fill: "start",
-      data: bottomLowerLimitList,
-      type: "line",
-      backgroundColor: "rgba(220, 53, 100, 1)",
-      pointHoverBackgroundColor: "white",
-
-      lineTension: 0.1,
-      borderColor: "red",
-      borderCapStyle: "butt",
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: "miter",
-      pointBorderColor: "red",
-      pointBackgroundColor: "rgba(220, 53, 100, 1)",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBorderColor: "rgba(0,0,0,1)",
-      pointHoverBorderWidth: 0,
-      pointRadius: 1,
-      pointHitRadius: 10,
-    },
-    {
-      label: t("lowerYellowFlagDesc"),
-      fill: "start",
-      data: bottomLimitList,
-      type: "line",
-      backgroundColor: "rgba(255, 255, 155, 1)",
-      pointHoverBackgroundColor: "white",
-
-      lineTension: 0.1,
-      borderColor: "yellow",
-      borderCapStyle: "butt",
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: "miter",
-      pointBorderColor: "yellow",
-      pointBackgroundColor: "rgba(255, 255, 155, 1)",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBorderColor: "rgba(0,0,0,1)",
-      pointHoverBorderWidth: 0,
-      pointRadius: 1,
-      pointHitRadius: 10,
-    },
+    
   ];
   const down = (ctx, value) => (ctx.p1DataIndex > 5 ? value : undefined);
   const dataLinePredicted = {
@@ -271,10 +222,10 @@ export default function GetPrediction() {
         data: predictedlineDataChart,
         type: "line",
         segment: {
-          borderColor: (ctx) => down(ctx, "rgb(192,75,75)"),
-          pointBorderColor: (ctx) => down(ctx, "rgb(192,75,75)"),
-          pointBackgroundColor: (ctx) => down(ctx, "rgb(192,75,75)"),
-          pointHoverBackgroundColor: (ctx) => down(ctx, "rgb(192,75,75)"),
+          borderColor: (ctx) => down(ctx, "rgb(0,0,255)"),
+          pointBorderColor: (ctx) => down(ctx, "rgb(0,0,255)"),
+          pointBackgroundColor: (ctx) => down(ctx, "rgb(0,0,255)"),
+          pointHoverBackgroundColor: (ctx) => down(ctx, "rgb(0,0,255)"),
         },
       },
       ...limitDatasets,
@@ -371,7 +322,7 @@ export default function GetPrediction() {
               <div style={{height:8,width:40,marginRight:8,backgroundColor:'black'}}></div> <span>{t('input')}</span>
             </div>
             <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <div style={{height:8,width:40,marginRight:8,backgroundColor:'rgb(192,75,75)'}}></div> <span>{t('predictionResult')}</span>
+              <div style={{height:8,width:40,marginRight:8,backgroundColor:'rgb(0,0,255)'}}></div> <span>{t('predictionResult')}</span>
             </div>
           </div>
           <Line
