@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-      NEXT_PUBLIC_API_URL: 'https://web-production-fd66.up.railway.app',
+      NEXT_PUBLIC_API_URL: 'https://bg-prediction.et.r.appspot.com',
+      // NEXT_PUBLIC_API_URL: 'https://web-production-fd66.up.railway.app',
       // NEXT_PUBLIC_API_URL: 'http://127.0.0.1:5000/',
       title: 'BG Prediction',
       titleDescription: 'Blood Glucose Level Prediction',
